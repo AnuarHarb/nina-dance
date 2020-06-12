@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import ReactGA from 'react-ga';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from '../components/layout/navbar';
 import Footer from '../components/layout/footer';
@@ -8,6 +9,10 @@ import Creations from '../components/creations';
 import Workshops from '../components/workshops';
 
 const App = () => {
+
+  useEffect(() => {
+    ReactGA.initialize('UA-163982682-1');
+  })
 
   return (
     <BrowserRouter>

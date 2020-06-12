@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
+import ReactGA from 'react-ga';
 import DefaultLayout from '../layout';
 import CreationCard from './creationCard';
 import { CreationsStyles } from './styles';
@@ -7,6 +8,11 @@ import { CreationsStyles } from './styles';
 const Creations = () => {
 
   const { pathname } = useLocation();
+  const history = useHistory();
+
+  useEffect(() => {
+    ReactGA.pageview(history.location.pathname);
+  }, [])
 
   useEffect(() => {
     window.scrollTo(0, 0);

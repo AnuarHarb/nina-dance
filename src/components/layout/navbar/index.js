@@ -17,7 +17,7 @@ const Navbar = (props) => {
     <NavbarStyles>
       <h1 className="navbar-title"><Link to="/">Nina Dance</Link></h1>
       <ul className="navbar-buttons">
-        <li><Link to='/'>Biografía</Link></li>
+        <li><Link to='/'>Inicio</Link></li>
         <li><Link to='/bailando-con-nina'>Bailando con Nina</Link></li>
         <li><Link to='/creaciones'>Creaciones</Link></li>
       </ul>
@@ -27,7 +27,7 @@ const Navbar = (props) => {
         handleClick={toggleSidenav}
       />
       <Sidenav
-        active={activeSidenav} 
+        active={activeSidenav}
         toggleSidenav={toggleSidenav}/>
     </NavbarStyles>
   )
@@ -39,10 +39,6 @@ const Sidenav = (props) => {
     toggleSidenav
   } = props;
 
-  useEffect(() => {
-    console.log(active);
-  }, [active]);
-
   return (
     <SidenavStyles active={active}>
       <CloseIcon
@@ -52,7 +48,7 @@ const Sidenav = (props) => {
         />
       <h2 className="title">Nina Dance</h2>
       <ul className="sidenav-buttons">
-        <li><Link to='/'>Biografía</Link></li>
+        <li><Link to='/'>Inicio</Link></li>
         <li><Link to='/bailando-con-nina'>Bailando con Nina</Link></li>
         <li><Link to='/creaciones'>Creaciones</Link></li>
       </ul>

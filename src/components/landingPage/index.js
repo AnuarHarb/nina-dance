@@ -1,5 +1,7 @@
 import React, {useEffect} from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import ReactGA from 'react-ga';
 import { LandingStyles } from './styles';
 import DefaultLayout from '../layout';
 import Workshops from '../workshops';
@@ -13,6 +15,12 @@ import activate from '../../assets/img/clases/activate.png';
 const Landing = (props) => {
 
   const { pathname } = useLocation();
+  const history = useHistory();
+
+  useEffect(() => {
+    console.log(history.location.pathname);
+    ReactGA.pageview(history.location.pathname);
+  }, [])
 
   useEffect(() => {
     window.scrollTo(0, 0);

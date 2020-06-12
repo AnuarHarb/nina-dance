@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import YouTube from 'react-youtube';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
+import ReactGA from 'react-ga';
 import DefaultLayout from '../layout';
 import { WorkshopsStyles } from './styles';
 
@@ -10,23 +11,37 @@ const Workshops = (props) => {
   } = props;
 
   const { pathname } = useLocation();
+  const history = useHistory();
+
+  useEffect(() => {
+    ReactGA.pageview(history.location.pathname);
+  }, [])
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
- const bigWidth = window.innerWidth < 450 ? 270 : 640;
- const bigHeight = window.innerWidth < 450 ? 195 : 390;
+  const bigWidth = window.innerWidth < 450 ? 270 : 640;
+  const bigHeight = window.innerWidth < 450 ? 195 : 390;
 
- const opts = {
-   width: bigWidth,
-   height: bigHeight,
-   playerVars: {
-     color: 'white',
-     modestbranding: 1,
-     showinfo: 0,
-   },
- }
+  const opts = {
+    width: bigWidth,
+    height: bigHeight,
+    playerVars: {
+      color: 'white',
+      modestbranding: 1,
+      showinfo: 0,
+    },
+  }
+
+  const inscriptionTrack = () => {
+    console.log('yey');
+    ReactGA.event({
+      category: 'Workshop',
+      action: 'Inscripción',
+      label: 'Conocer, explorar y crear'
+    });
+  }
 
  return (
    <WorkshopsStyles>
@@ -110,14 +125,24 @@ const Workshops = (props) => {
                   <p className="text"><span className="text bold">Por la mañana</span></p>
                   <p className="text">9:30 am a 11:30 am</p>
                   <div className="link-container">
-                    <a className="cta-button dark" href="https://forms.gle/xPAkLYbi8uRKJGqBA">Inscribirme</a>
+                    <a
+                      className="cta-button dark"
+                      onClick={inscriptionTrack}
+                      href="https://forms.gle/xPAkLYbi8uRKJGqBA">
+                      Inscribirme
+                    </a>
                   </div>
                 </article>
                 <article>
                   <p className="text"><span className="text bold">Por la tarde</span></p>
                   <p className="text">2 pm a 4 pm</p>
                   <div className="link-container">
-                    <a className="cta-button dark" href="https://forms.gle/xPAkLYbi8uRKJGqBA">Inscribirme</a>
+                    <a
+                      className="cta-button dark"
+                      onClick={inscriptionTrack}
+                      href="https://forms.gle/xPAkLYbi8uRKJGqBA">
+                      Inscribirme
+                    </a>
                   </div>
                 </article>
               </div>
